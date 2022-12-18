@@ -42,7 +42,7 @@ export const startSerialDeviceConnection = async (
   serialDevices[path] = { port };
 
   port.on("data", (data: Buffer) => {
-    console.log("received message", path, data);
+    console.log("received message", path, data.toString());
     pubMessage(SUBSCRIPTIONS.SERIAL_MESSAGE, {
       date: new Date().toISOString(),
       message: data.toString(),
