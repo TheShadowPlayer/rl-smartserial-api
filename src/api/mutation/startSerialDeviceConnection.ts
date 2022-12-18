@@ -41,11 +41,11 @@ export const startSerialDeviceConnection = async (
   });
   serialDevices[path] = { port };
 
-  port.on("data", (data) => {
+  port.on("data", (data: Buffer) => {
     console.log("received message", path, data);
     pubMessage(SUBSCRIPTIONS.SERIAL_MESSAGE, {
       date: new Date().toISOString(),
-      message: data,
+      message: data.toString(),
       path,
     });
   });
