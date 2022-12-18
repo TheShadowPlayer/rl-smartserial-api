@@ -1,0 +1,3 @@
+export enum SUBSCRIPTIONS {
+  SERIAL_MESSAGE = "SERIAL_MESSAGE",
+}

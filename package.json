@@ -1,0 +1,34 @@
+{
+  "name": "rl-smartserial-api",
+  "version": "0.0.1",
+  "description": "This is the Backend of the SmartSerial Application",
+  "main": "src/index.ts",
+  "author": "René Lohrer",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "------ General ------": "------ General ------",
+    "typesync": "npx typesync",
+    "------ Build and Start ------": "------ Build and Start ------",
+    "dev": "ts-node-dev -r tsconfig-paths/register src/index.ts",
+    "start": "ts-node -r tsconfig-paths/register src/index.ts"
+  },
+  "dependencies": {
+    "graphql": "^16.6.0",
+    "graphql-import-node": "^0.0.5",
+    "graphql-yoga": "^3.1.1",
+    "http": "^0.0.1-security",
+    "serialport": "^10.5.0",
+    "typescript": "^4.9.4"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.4.10",
+    "@types/http-server": "^0.12.1",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "eslint": "^8.30.0",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "tsconfig-paths": "^4.1.1"
+  }
+}
