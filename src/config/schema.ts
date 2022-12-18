@@ -105,7 +105,8 @@ type DevicePort {
         ) =>
           await startSerialDeviceConnection(
             args.options,
-            (subscription, data) => pubSub.publish(subscription, data),
+            (subscription, data) =>
+              pubSub.publish(subscription, data.path, data),
             serialDevices
           ),
         sendMessage: (parent, args: SendMessageArg) =>
