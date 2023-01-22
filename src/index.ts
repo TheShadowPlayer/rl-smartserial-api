@@ -7,7 +7,10 @@ const pubsub = createPubSub();
 
 const serialDevices: SerialDevicesType = {};
 
-const yoga = createYoga({ schema: getSchema(pubsub, serialDevices) });
+const yoga = createYoga({
+  schema: getSchema(pubsub, serialDevices),
+  cors: false,
+});
 
 const server = createServer(yoga);
 
