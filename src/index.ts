@@ -9,7 +9,9 @@ const serialDevices: SerialDevicesType = {};
 
 const yoga = createYoga({
   schema: getSchema(pubsub, serialDevices),
-  cors: false,
+  cors: {
+    origin: ["http://localhost:3000", "https://theshadowplayer.github.io"],
+  },
 });
 
 const server = createServer(yoga);
