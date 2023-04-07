@@ -1,4 +1,5 @@
 import { SUBSCRIPTIONS } from "api/subscription/subscriptions";
+import PQueue from "p-queue";
 import { SerialPort } from "serialport";
 import {
   PublishSubscriptionMessageFunction,
@@ -9,6 +10,8 @@ import {
   StartSerialDeviceConnectionResult,
 } from "types/mutation/startSerialDeviceConnection.types";
 import { DeviceMessage } from "types/subscription/deviceMessage.types";
+
+const queue = new PQueue({ concurrency: 1, interval: 150 });
 
 export const startSerialDeviceConnection = async (
   options: StartSerialDeviceConnectionInput,
@@ -43,10 +46,12 @@ export const startSerialDeviceConnection = async (
 
   port.on("data", (data: Buffer) => {
     console.log("received message", path, data.toString());
-    pubMessage(SUBSCRIPTIONS.SERIAL_MESSAGE, {
-      date: new Date().toISOString(),
-      message: data.toString(),
-      path,
+    queue.add(() => {
+      pubMessage(SUBSCRIPTIONS.SERIAL_MESSAGE, {
+        date: new Date().toISOString(),
+        message: data.toString(),
+        path,
+      });
     });
   });
   let successful = true;
